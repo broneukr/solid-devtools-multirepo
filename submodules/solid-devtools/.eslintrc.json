@@ -1,0 +1,147 @@
+{
+    "extends": [
+        "./.eslintrc.formatting.json",
+        "eslint:recommended"
+    ],
+    "parserOptions": {
+        "project": "./tsconfig.json"
+    },
+    "plugins": [
+        "eslint-plugin-import",
+        "unicorn"
+    ],
+    "settings": {
+        "import/parsers": {
+            "@typescript-eslint/parser": [".ts", ".tsx"]
+        },
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            }
+        }
+    },
+    "rules": {
+        "max-len": ["error", {"code": 225}],
+        "no-console": ["warn", {"allow": ["warn", "error"]}],
+        "no-prototype-builtins": "off",
+        "no-empty-function": "off",
+        "no-return-await": "error",
+        "no-eval": "error",
+        "no-implied-eval": "error",
+        "no-extend-native": "error",
+        "no-proto": "error",
+        "no-param-reassign": "error",
+        "no-shadow": "error",
+        "no-throw-literal": "error",
+        "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+
+        "import/no-extraneous-dependencies": ["error", {
+            "devDependencies": ["rollup.config.js", "vite.config.js"], 
+            "optionalDependencies": false, 
+            "peerDependencies": false
+        }],
+        "import/no-unused-modules": "error",
+        "import/no-unresolved": "error",
+        "import/named": "error",
+        "import/first": "error",
+        "import/newline-after-import": "error",
+        "import/no-default-export": "error",
+        "import/exports-last": "error",
+        "import/group-exports": "error",
+        
+        "unicorn/filename-case": "error"
+    },
+    "overrides": [{
+        "files": ["*.ts", "*.tsx"],
+        "extends": [
+            "plugin:@typescript-eslint/recommended",
+            "plugin:@typescript-eslint/recommended-requiring-type-checking"
+        ],
+        "rules": {
+            "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+            "@typescript-eslint/no-non-null-assertion": "off",
+            "@typescript-eslint/no-empty-function": "off",
+            "@typescript-eslint/no-unnecessary-boolean-literal-compare": "error",
+            "@typescript-eslint/no-use-before-define": ["error", {"functions": false, "classes": false}],
+            "@typescript-eslint/consistent-type-assertions": ["error", {
+                "assertionStyle": "as",
+                "objectLiteralTypeAssertions": "allow"
+            }],
+            "@typescript-eslint/consistent-type-imports": "error",
+            "@typescript-eslint/consistent-type-exports": "error",
+            "@typescript-eslint/ban-types": ["error", {
+                "extendDefaults": true,
+                "types": {
+                    "{}": false
+                }
+            }],
+            "import/named": "off"
+        }
+    }, {
+        "files": ["./src/background/*.ts"],
+        "parserOptions": {
+            "project": "tsconfig.worker.json"
+        }
+    }, {
+        "files": ["*-types.ts"],
+        "rules": {
+            "import/exports-last": "off",
+            "import/group-exports": "off"
+        }        
+    }, {
+        "files": [
+            "./src/devtools-page/ui/assets.d.ts"
+        ], 
+        "rules": {
+            "import/no-default-export": "off"
+        }
+    }, {
+        "files": ["./src/hook/wrappers/signal-wrapper.ts"],
+        "rules": {
+            "prefer-const": "off",
+            "@typescript-eslint/ban-types": ["error", {
+                "extendDefaults": true,
+                "types": {
+                    "{}": false,
+                    "Function": false
+                }
+            }]
+        }
+    }, {
+        "files": ["./src/devtools-page/ui/debug-log-panel.tsx", "src/hook/hook.ts"],
+        "rules": {
+            "no-console": "off"
+        }
+    }, {
+        "files": [
+            "./postcss.config.js",
+            "./rollup.config.js",
+            "./vite.config.js",
+            "./tailwind.config.js"
+        ],
+        "env": {
+            "node": true
+        },
+        "rules": {
+            "import/no-default-export": "off"
+        }
+    }, {
+        "files": [
+            "*.test.ts"
+        ],
+        "parserOptions": {
+            "project": "tsconfig.test.json"
+        },
+        "rules": {
+            "import/no-extraneous-dependencies": ["error", {
+                "devDependencies": true, 
+                "optionalDependencies": false, 
+                "peerDependencies": false
+            }]
+        }
+    }, {
+        "files": ["*.html"],
+        "parser": "@html-eslint/parser",
+        "extends": ["plugin:@html-eslint/recommended"]
+    }]
+}

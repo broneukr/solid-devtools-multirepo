@@ -1,0 +1,9 @@
+{
+    "extends": "./tsconfig.common.json",
+    "compilerOptions": {
+        "skipLibCheck": true
+    },
+    "exclude": [
+        "./src/background/*.ts"
+    ]
+}

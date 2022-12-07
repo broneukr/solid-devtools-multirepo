@@ -1,0 +1,53 @@
+{
+    "manifest_version": 3,
+    "name": "Solid Developer Tools",
+    "version": "0.1.1",
+    "version_name": "0.1.1 (work in progress)",
+    "author": "Artem Khodyush",
+    "minimum_chrome_version": "94",
+
+    "devtools_page": "pages/devtools-page.html",
+    "background": {
+        "service_worker": "scripts/background-worker.js"
+    },
+    "content_scripts": [{
+        "matches": ["<all_urls>"],
+        "js": ["scripts/inject-global-hook.js"],
+        "run_at": "document_start"
+    }],
+    "web_accessible_resources": [{
+        "resources": [
+            "scripts/hook-main.js",
+            "scripts/hook-stub.js"
+        ],
+        "matches": ["<all_urls>"]
+    }],
+    "permissions": [
+        "scripting",
+        "storage"
+    ],
+    "host_permissions": [
+        "file:///*",
+        "http://*/*",
+        "https://*/*"
+    ],
+    "options_ui": {
+        "page": "pages/options.html",
+        "open_in_tab": false
+    },
+    "action": {
+        "default_icon": {
+            "16": "icons/solid-gray-16.png",
+            "32": "icons/solid-gray-32.png",
+            "48": "icons/solid-gray-48.png",
+            "128": "icons/solid-gray-128.png"
+        },
+        "default_popup": "pages/popups/disabled.html"
+    },
+    "icons": {
+        "16": "icons/solid-normal-16.png",
+        "32": "icons/solid-normal-32.png",
+        "48": "icons/solid-normal-48.png",
+        "128": "icons/solid-normal-128.png"
+    }
+}
